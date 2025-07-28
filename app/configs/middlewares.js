@@ -16,25 +16,17 @@ export const notFoundHandler = (req, res, next) => {
 };
 
 export const redirectIfLoggedIn = (req, res, next) => {
-  if (req.session && req.session.userId) {
+  console.log(req.session);
+  if (req.session.user) {
     return res.redirect('/');
   }
   next();
 };
 
 export const requireLogin = (req, res, next) => {
-  if (!req.session || !req.session.userId) {
+  if (!req.session || !req.session.user) {
     req.flash('error', 'Debes iniciar sesión para continuar');
     return res.redirect('/sign-in');
   }
   next();
-};
-
-export const errorHandler = (err, req, res, next) => {
-  res.status(err.status || 500);
-  res.render('error', {
-    title: 'Error del servidor',
-    message: err.message,
-    error: req.app.get('env') === 'development' ? err : {}
-  });
 };

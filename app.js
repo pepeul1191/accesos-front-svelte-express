@@ -1,13 +1,12 @@
-import createError from 'http-errors';
 import express from 'express';
-import path from 'path';
 import cookieParser from 'cookie-parser';
+import createError from 'http-errors';
 import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import session from 'express-session';
 import flash from 'connect-flash';
-import { notFoundHandler, errorHandler } from './app/configs/midddlewares.js'
+import { notFoundHandler } from './app/configs/middlewares.js'
 
 import sessionRouter from './app/routes/session.js';
 import siteRouter from './app/routes/site.js';
@@ -40,7 +39,6 @@ app.use('/', siteRouter);
 
 // catch 404 and forward to error handler
 app.use(notFoundHandler);
-//app.use(errorHandler);
 
 // error handler
 app.use((err, req, res, next) => {

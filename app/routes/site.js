@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { requireLogin } from '../configs/midddlewares.js'
+import { requireLogin } from '../configs/middlewares.js';
 
 const router = Router();
 

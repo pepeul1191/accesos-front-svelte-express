@@ -27,6 +27,9 @@
           <a class="nav-link" href="/systems" on:click|preventDefault={() => {navigate('/users')}}>Usuarios</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/session">Ver Sesión</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/sign-out">Salir</a>
         </li>
       </ul>
