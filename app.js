@@ -5,6 +5,9 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import session from 'express-session';
+import flash from 'connect-flash';
+import { notFoundHandler, errorHandler } from './app/configs/midddlewares.js'
 
 import sessionRouter from './app/routes/session.js';
 import siteRouter from './app/routes/site.js';
@@ -19,6 +22,13 @@ const __dirname = dirname(__filename);
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret: 'mi_secreto',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,9 +39,8 @@ app.use('/', sessionRouter);
 app.use('/', siteRouter);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
+app.use(notFoundHandler);
+//app.use(errorHandler);
 
 // error handler
 app.use((err, req, res, next) => {

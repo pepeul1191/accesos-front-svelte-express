@@ -1,8 +1,9 @@
 import { Router } from 'express';
+import { requireLogin } from '../configs/midddlewares.js'
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', requireLogin, (req, res) => {
   res.locals.title = 'Inicio';
   res.render('index');
 });

@@ -2,7 +2,7 @@
 <html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acceso</title>
+  <title>Recurso no encontrado</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   
   <link rel="stylesheet" href="/dist/vendor.min.css">
@@ -25,18 +25,13 @@
 <body>
   <div class="container">
     <div class="error-container">
-      <h2 class="mb-3">Ha cerrado su sessión</h2>
-      <p class="text-muted">Si no eres redirigido automáticamente a la página de inicio, haz clic en el botón de abajo.</p>
+      <h1 class="display-1 fw-bold">404</h1>
+      <h2 class="mb-3">¡Oops! Página no encontrada</h2>
+      <p class="text-muted">La página que buscas no existe o ha sido movida.</p>
       <a href="/" class="btn btn-primary mt-3">
-        <i class="fa fa-home icon-left-margin" aria-hidden="true"></i> Ir al inicio
+        <i class="fa fa-home icon-left-margin" aria-hidden="true"></i> Regresar al inicio
       </a>
     </div>
   </div>
-  <script>
-    localStorage.clear();
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 3000);
-  </script>
 </body>
 </html>
