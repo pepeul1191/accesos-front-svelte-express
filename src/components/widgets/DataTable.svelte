@@ -47,6 +47,7 @@
     requestError: 'No se recibió respuesta del servidor',
     otherError: 'Ocurrió un error no esperado al traer los datos del servidor',
   };
+  export let jwtToken = null;
 
   // delete confirmation modal
   let deleteConfirmationInstance;
@@ -91,7 +92,7 @@
         {
           // params: queryParams,
           headers:{
-            //[CSRF.key]: CSRF.value,
+            'Authorization': `Bearer ${jwtToken}`
           }
         },
       )
@@ -233,7 +234,7 @@
         }, {
           headers: {
             'Content-Type': 'application/json',
-            //[CSRF.key]: CSRF.value,
+            'Authorization': `Bearer ${jwtToken}`
           }
         })
         .then(function (response) {
@@ -335,7 +336,7 @@
         {
           params: Object.keys(queryParams).length > 0 ? queryParams : undefined,
           headers:{
-            //[CSRF.key]: CSRF.value,
+            'Authorization': `Bearer ${jwtToken}`
           }
         },
       )

@@ -6,6 +6,8 @@
   
   const dispatch = createEventDispatcher();
 
+  const jwtToken = localStorage.getItem('jwtToken');
+
   export let id = null;
   let name = '';
   let description = '';
@@ -68,9 +70,10 @@
       let response;
       btnDisabled = true;
       if(id == null){
-        response = await axios.post(BASE_URL + 'api/v1/systems', formData, {
+        response = await axios.post(API_URL + 'api/v1/systems', formData, {
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwtToken}`
           },
         });
         created = toDatetimeLocalWithSeconds(response.data.created);
@@ -81,8 +84,9 @@
         // notificar al padre que se ha actualizado algo
         cleanMessage(true);
       }else{
-        response = await axios.put(BASE_URL + 'api/v1/systems', formData, {
+        response = await axios.put(API_URL + 'api/v1/systems', formData, {
           headers: {
+            'Authorization': `Bearer ${jwtToken}`,
             'Content-Type': 'application/json',
           },
         });  

@@ -186,7 +186,7 @@
   <div class="container">
     <DataTable 
       bind:this={systemDataTable}
-      fetchURL={BASE_URL + 'api/v1/systems'}
+      fetchURL={API_URL + 'api/v1/systems'}
       columnKeys={['id', 'name', 'description']}
       columnTypes={['id', 'td', 'td']}
       columnNames={['ID', 'Nombre', 'Descripción', 'Acciones']}
@@ -213,6 +213,7 @@
         actualPage: 1
       }}
       actionButtons={[]} 
+      jwtToken={localStorage.getItem('jwtToken')}
       on:alert={handleTableAlert}
     />
   </div>

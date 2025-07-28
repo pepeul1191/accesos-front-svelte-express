@@ -17,7 +17,7 @@
   export const setSystemId = (system) => {
     console.log(system)
     systemId = system.id;
-    rolesDataTable.fetchURL = BASE_URL + 'api/v1/systems/' + systemId + '/roles';
+    rolesDataTable.fetchURL = API_URL + 'api/v1/systems/' + systemId + '/roles';
     rolesDataTable.list();
     displayPermission = false;
   }
@@ -42,8 +42,8 @@
       // ejemplos
     rolesDataTable.addButton.action = () => rolesDataTable.addRow();
     //systemDataTable.addButton.action = () => systemDataTable.goToLink('/users');
-    //systemDataTable.addButton.action = () => systemDataTable.goToHref(BASE_URL + 'hola');
-    //systemDataTable.addButton.action = () => systemDataTable.openTab(BASE_URL + 'hola');
+    //systemDataTable.addButton.action = () => systemDataTable.goToHref(API_URL + 'hola');
+    //systemDataTable.addButton.action = () => systemDataTable.openTab(API_URL + 'hola');
     // table action buttons
     rolesDataTable.actionButtons = [
       {
@@ -53,8 +53,8 @@
         action: (record) => {
           //systemDataTable.askToDeleteRow(record, 'id');
           roleId = record.id;
-          permissionsDataTable.fetchURL = BASE_URL + 'api/v1/roles/' + roleId + '/permissions';
-          permissionsDataTable.saveURL = BASE_URL + 'api/v1/permissions/' + roleId;
+          permissionsDataTable.fetchURL = API_URL + 'api/v1/roles/' + roleId + '/permissions';
+          permissionsDataTable.saveURL = API_URL + 'api/v1/permissions/' + roleId;
           permissionsDataTable.list();
           displayPermission = true;
         }
@@ -104,8 +104,8 @@
     </div>
     <DataTable 
       bind:this={rolesDataTable}
-      fetchURL={BASE_URL + 'api/v1/systems/' + systemId + '/roles'}
-      saveURL={BASE_URL + 'api/v1/roles/' + systemId}
+      fetchURL={API_URL + 'api/v1/systems/' + systemId + '/roles'}
+      saveURL={API_URL + 'api/v1/roles/' + systemId}
       columnKeys={['id', 'name', ]}
       columnTypes={['id', 'input[text]', ]}
       columnNames={['ID', 'Nombre', 'Acciones']}
@@ -137,6 +137,7 @@
       }}
       actionButtons={[]} 
       on:alert={handleTableAlert}
+      jwtToken={localStorage.getItem('jwtToken')}
     />
   </div>
   <div class="col-md-6 {!displayPermission ? 'd-none' : ''}" style="padding-left: 30px; padding-right: 20px;">
@@ -144,8 +145,8 @@
       <h4 class="subtitle">Lista de Permisos del Rol</h4>
       <DataTable 
         bind:this={permissionsDataTable}
-        fetchURL={BASE_URL + 'api/v1/roles/' + permissionId + '/permissions'}
-        saveURL={BASE_URL + 'api/v1/permission/' + roleId}
+        fetchURL={API_URL + 'api/v1/roles/' + permissionId + '/permissions'}
+        saveURL={API_URL + 'api/v1/permission/' + roleId}
         columnKeys={['id', 'name', ]}
         columnTypes={['id', 'input[text]', ]}
         columnNames={['ID', 'Nombre', 'Acciones']}
@@ -177,6 +178,7 @@
         }}
         actionButtons={[]} 
         on:alert={handleTableAlert}
+        jwtToken={localStorage.getItem('jwtToken')}
       />
     </div>
   </div>

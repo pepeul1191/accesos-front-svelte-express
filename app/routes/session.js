@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import axios from 'axios';
-import { redirectIfLoggedIn } from '../configs/middlewares.js';
+import { redirectIfLoggedIn, requireLogin } from '../configs/middlewares.js';
 
 const router = Router();
 dotenv.config();
@@ -64,17 +64,17 @@ router.post('/sign-in', async (req, res) => {
   }
 });
 
-router.get('/sign-out', (req, res) => {
+router.get('/sign-out', requireLogin, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error('Error al cerrar sesión:', err);
     }
-    res.redirect('/sign-in');
+    res.render('sign-out');
   });
 });
 
 // Ruta para obtener los datos de la sesión
-router.get('/session', (req, res) => {
+router.get('/session', requireLogin, (req, res) => {
   // Verificar si existe una sesión activa
   if (req.session.user) {
     res.json({

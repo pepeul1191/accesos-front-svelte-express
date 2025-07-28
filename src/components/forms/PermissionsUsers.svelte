@@ -24,7 +24,7 @@
   export const set = (systemIdN, userIdN) => {
     systemId = systemIdN;
     userId = userIdN;
-    rolesDataTable.fetchURL = BASE_URL + 'api/v1/systems/' + systemId + '/roles';
+    rolesDataTable.fetchURL = API_URL + 'api/v1/systems/' + systemId + '/roles';
     rolesDataTable.list();
     displayPermission = false;
   }
@@ -60,8 +60,8 @@
         action: (record) => {
           //systemDataTable.askToDeleteRow(record, 'id');
           roleId = record.id;
-          permissionsDataTable.fetchURL = BASE_URL + 'api/v1/systems-permissions/'+ systemId + '/users/' + userId + '/roles/' + record.id;
-          permissionsDataTable.saveURL = BASE_URL + 'api/v1/systems-permissions/'+ systemId + '/users/' + userId;
+          permissionsDataTable.fetchURL = API_URL + 'api/v1/systems-permissions/'+ systemId + '/users/' + userId + '/roles/' + record.id;
+          permissionsDataTable.saveURL = API_URL + 'api/v1/systems-permissions/'+ systemId + '/users/' + userId;
           permissionsDataTable.list();
           displayPermission = true;
         }
@@ -85,8 +85,8 @@
     </div>
     <DataTable 
       bind:this={rolesDataTable}
-      fetchURL={BASE_URL + 'api/v1/systems/' + systemId + '/roles'}
-      saveURL={BASE_URL + 'api/v1/roles/' + systemId}
+      fetchURL={API_URL + 'api/v1/systems/' + systemId + '/roles'}
+      saveURL={API_URL + 'api/v1/roles/' + systemId}
       columnKeys={['id', 'name', ]}
       columnTypes={['id', 'td', ]}
       columnNames={['ID', 'Nombre', 'Acciones']}
@@ -117,16 +117,17 @@
         actualPage: 1
       }}
       actionButtons={[]} 
-      on:alert={handleTableAlert}
+      on:alert={handleTableAlert} 
+      jwtToken={localStorage.getItem('jwtToken')}
     />
   </div>
   <div class="col-md-6 {!displayPermission ? 'd-none' : ''}" style="padding-left: 30px; padding-right: 20px;">
     <div class="row subtitle-row">
-      <h4 class="subtitle">Lista de Permisos del Rol???</h4>
+      <h4 class="subtitle">Lista de Permisos del Rol</h4>
       <DataTable 
         bind:this={permissionsDataTable}
-        fetchURL={BASE_URL + 'api/v1/roles/' + permissionId + '/permissions'}
-        saveURL={BASE_URL + 'api/v1/api/v1/systems-permissions/'+ systemId + '/users/' + userId}
+        fetchURL={API_URL + 'api/v1/roles/' + permissionId + '/permissions'}
+        saveURL={API_URL + 'api/v1/api/v1/systems-permissions/'+ systemId + '/users/' + userId}
         columnKeys={['id', 'name', 'registered']}
         columnTypes={['id', 'td', 'radiobuttonAll']}
         columnNames={['ID', 'Nombre', 'Asignado']}
@@ -148,6 +149,7 @@
         }}
         actionButtons={[]} 
         on:alert={handleTableAlert}
+        jwtToken={localStorage.getItem('jwtToken')}
       />
     </div>
   </div>

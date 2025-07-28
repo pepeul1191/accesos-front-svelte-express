@@ -162,7 +162,7 @@
     <div class="col-md-10">
       <DataTable 
         bind:this={userDataTable}
-        fetchURL={BASE_URL + 'api/v1/systems/' + id + '/users'}
+        fetchURL={API_URL + 'api/v1/systems/' + id + '/users'}
         columnKeys={['id', 'username', 'email', 'registered']}
         columnTypes={['id', 'td', 'td', 'radiobuttonAll']}
         columnNames={['ID', 'Nombre', 'Correo', 'Registrado', 'Acciones']}
@@ -189,6 +189,7 @@
         }}
         actionButtons={[]} 
         on:alert={handleTableAlert}
+        jwtToken={localStorage.getItem('jwtToken')}
       />
     </div>
   </div>
