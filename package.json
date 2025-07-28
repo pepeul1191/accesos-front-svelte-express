@@ -10,7 +10,9 @@
     "start": "node ./bin/www",
     "nodemon": "nodemon --watch app.js --watch app --watch ./bin/www",
     "svelte": "rollup -c -w",
-    "dev": "npm run nodemon & npm run svelte"
+    "dev": "npm run nodemon & npm run svelte",
+    "export-postman": "node ./scripts/exportPostman.js",
+    "restore-postman": "node ./scripts/restorePostman.js"
   },
   "dependencies": {
     "axios": "^1.6.0",

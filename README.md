@@ -15,3 +15,5 @@ Archivo .env
     ADMIN_PASSWORD=123
     NODE_ENV=development
     AUTH_ADMIN_HEADER=dXNlci1zdGlja3lfc2VjcmV0XzEyMzQ1Njc
+    POSTMAN_API_KEY=XYZ
+    POSTMAN_COLLECTION_NAME=Backend-de-Accesos
