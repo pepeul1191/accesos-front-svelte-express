@@ -39,3 +39,6 @@ pids/
 # Optional: Next.js or Vite (si usas algo moderno)
 .next/
 out/
+
+
+public/fonts
