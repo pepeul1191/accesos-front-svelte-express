@@ -25,7 +25,7 @@ router.post('/sign-in', async (req, res) => {
 
     // Hacer petición a la API para generar el JWT
     const apiResponse = await axios.post(
-      process.env.API_URL + 'api/v1/sign-in/admin',
+      process.env.API_URL + 'api/v1/auth/admin',
       {}, // body vacío ya que no se necesita payload
       {
         headers: {

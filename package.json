@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "nodemon": "nodemon --watch app.js --watch app --watch ./bin/www",
+    "nodemon": "npx nodemon --watch app.js --watch app --watch ./bin/www",
     "svelte": "rollup -c -w",
     "dev": "npm run nodemon & npm run svelte",
     "export-postman": "node ./scripts/exportPostman.js",

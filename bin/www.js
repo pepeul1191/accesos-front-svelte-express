@@ -6,6 +6,7 @@ import debugLib from 'debug';
 const debug = debugLib('access-f:server');
 
 const port = normalizePort(process.env.PORT || '3000');
+console.log('Aplicación ejecutandose en el puerto ' + port);
 app.set('port', port);
 
 const server = http.createServer(app);
